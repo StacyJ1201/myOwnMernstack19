@@ -1,31 +1,44 @@
-// semi colons are optional
-console.log("Hello world!!");
+// - commenting - single line comment (ctrl+/ - toggle)
+/*
+comments for the code
+*/
 
-//
-var i = 1000; //var keyword is used to declare and initalize tthe variables in JS
+// semi-colons (;) are optional
 
+console.log("Hello World!!")
 
-// setInterval(function(){
-//     console.log(i)
-//     i++
-// }, 1000);
+// 
+var i = 1000; // var keyword is used to initialize the variables in js
+
+//built in loop function
+// setInterval(function() {
+//   console.log(++i)
+
+// }, 1000)
 
 //REPL - Read, Evaluate, Print and Loop
+//stop execution - ctrl + c
 
-//Arithmetic - 
-function sum(a, b){
+console.log(sum(6, 10)) //error, 16(calls the function before declaration), - hoisting
+
+function sum(a,b) {
+    //console.log(this)
     return a + b
 }
 
+//Arithmatic - is class and sum is class member (gives behaviour)
+// Arithmatic obj = new Arithmatic()
+// obj.sum(5,6);
 
-//How to call your class
+console.log(sum(6, 10)) //function invocation, calling
 
-console.log(sum(5, 9)) //calling the function
-
-var sumValue = 2000;
+var sumValue = sum(6, 10)
 console.log(sumValue)
 
-var sumValue = "This was a number but is now a Stirng"
-console.log(sumValue)
+sumValue = 2000;
 
-//Javascript is a dynamic typing 
+console.log(sumValue) //
+
+sumValue = "This was initialized as number but now is a string";
+
+console.log(sumValue) //
