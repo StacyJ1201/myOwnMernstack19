@@ -26,14 +26,45 @@ function Accounts(name, age, balance, type){
                 accType
             }
         } else{
-            return "Password is incorrecr";
+            return "Password is incorrect";
         }
     }
     //the entities returned via function
     return details;
 }
 
-var acctObj = Accounts("mark", 21, "$10_000", "Debit")
+var acctObj = Accounts("mark", 21, "$10_000", "Debit");
 
-console.log(acctObj("mark", "xyz"));
+// console.log(acctObj("mark", "xyz"));
+// console.log(acctObj("mark", "Hello"));
 
+//My own parent and child function
+
+function Car(make, model, year){
+    var carMake = make;
+    var carModel = model;
+    var carYear = year;
+    var accelerate = "Car is going";
+    var decelerate = "Car is stopping";
+
+    var useCar = function(action){
+        if(action == "details"){
+            return {
+                carMake,
+                carModel,
+                carYear,
+            } 
+        } else if(action == "go"){
+            return accelerate
+        }else if(action == "stop"){
+            return decelerate;
+        }
+        else {
+            return "Give me something";
+        }
+    } 
+    return useCar;
+}
+
+var shonda = Car("Honda", "Civic", 2016);
+console.log(shonda(""));
