@@ -1,70 +1,57 @@
-//OOPS
-//Polymorphism - Overloading(No such thing as overloading, just hoisting which means newest function is used aka over-writing)
-// Overriding(by inheriting in constructor function we can oveeride )
+//OOPs
+//Polymorphism - Overloading (over-writing) and Overriding (by inheriting in constructor function we can override)
 //Inheritance - is possible, prototype{ an object that links the child object to base function} : __proto__
-//Abstractions - Abstract function or class are not present but function can do abstract implementation
-//Encapsulation - We limit the access of properties abd fields via access modifiers, there are no keywords for this
-                    //we can manipulate the funtion to restrict the access of function variables via closures
-//Closures - A paradigm when a function contains another function and has some fields kept as private and some public
-            //and return them through child functions
+//Abstractions - Abstract function/class are not present but function can do abstract implementation
+//Encapsulation - We limit the access of properties and fields via access modifiers, we dont have any keywords for this
+                // we can manipulate the function to restric the access of function variables
 
-function Accounts(name, age, balance, type){
-    var accName = name;
-    var accHolderAge = age;
-    var accBalance = balance;
-    var accType = type;
+// Closures - A paradigm when a function contains another function and has some fields kept as private, some as public
+// by returning them through child function
+// function retruning another function is closure example
+
+function Accounts(name, age, balance, type) {
+    //Private scope
+    var AccName = name
+    var AccHolderAge = age
+    var AccBalance = balance
+    var AccType = type
     var password = "xyz" // private
-    var accPin = "9876" //private
+    var AccPin = "9682" // private
 
-    var details = function(name, pwd){
-        //Things returned from this are public
-        if(pwd == password){
-            return {
-                accName,
-                accHolderAge,
-                accBalance,
-                accType
+    //
+    var accountDetails = function (name, pwd) {
+        //things returned from this function are public
+        if (pwd == password) {
+            return { 
+            //short hand from ES6, if variable name (from which we read the value) and key refers to same name
+                AccName, //"AccName" : AccName, 
+                AccHolderAge,
+                AccBalance,
+                AccType
             }
-        } else{
-            return "Password is incorrect";
+        } else {
+            return "Password is incorrect!!"
         }
     }
+
     //the entities returned via function
-    return details;
+    return accountDetails;
 }
 
-var acctObj = Accounts("mark", 21, "$10_000", "Debit");
+var acctObj = Accounts("Mark", 21, "$200000", "Credit")
 
-// console.log(acctObj("mark", "xyz"));
-// console.log(acctObj("mark", "Hello"));
+console.log(acctObj("Mark", "xyz"))
+console.log(acctObj("Mark", "3123"))
 
-//My own parent and child function
+// for (let index = 0; index < 1000; index++) {
+//     //const element = array[index];
+//     console.log(index)
+// }
 
-function Car(make, model, year){
-    var carMake = make;
-    var carModel = model;
-    var carYear = year;
-    var accelerate = "Car is going";
-    var decelerate = "Car is stopping";
+// console.log("Loop execute 1000000 times")
 
-    var useCar = function(action){
-        if(action == "details"){
-            return {
-                carMake,
-                carModel,
-                carYear,
-            } 
-        } else if(action == "go"){
-            return accelerate
-        }else if(action == "stop"){
-            return decelerate;
-        }
-        else {
-            return "Give me something";
-        }
-    } 
-    return useCar;
-}
+// console.log(acctObj("", "xyz"))
+// console.log(acctObj("", "3123"))
 
-var shonda = Car("Honda", "Civic", 2016);
-console.log(shonda(""));
+
+// Create your own example of closure and share with me on your git hub link

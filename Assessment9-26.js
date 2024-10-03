@@ -81,4 +81,4 @@ var newTv = Television("Sony", "32in");
 console.log(newTv("off"))
 
 //Sharing objects from one file to another
-
+module.exports = Person3

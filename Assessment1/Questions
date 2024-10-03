@@ -1,0 +1,153 @@
+////March - MERNStack Session - Assessment Number 1 - 2nd October 2024
+//Q1. Create a file with name basics and show all the features that you know about javascript?
+// Try explaining in 1-2 lines : example - Prototype : An object which behaves as a link between two functions and provides inheritance
+
+//Q2. As javascript is not a type safe and has auto cast feature - try showing below values from the same variable
+// and its type as well :values are - "Robert ", .0266, false, {myname : "Test Me"}, 25166665, undefined, true, "Robert Jr.", null, {}, -32767
+
+var question2 = "Robert" ;
+console.log(question2, typeof question2);
+question2 = 0.266
+console.log(question2, typeof question2);
+question2 = false
+console.log(question2, typeof question2);
+question2  = {myname : "Test Me"}
+console.log(question2, typeof question2);
+question2 = 25166665
+console.log(question2, typeof question2);
+question2 = undefined
+console.log(question2, typeof question2);
+question2 = true
+console.log(question2, typeof question2);
+question2 = "Robert Jr."
+console.log(question2, typeof question2);
+question2 = null
+console.log(question2, typeof question2);
+question2 = {}
+console.log(question2, typeof question2);
+question2 = -32767
+console.log(question2, typeof question2);
+
+
+//Q3. Create a function with name showUserInfo, this function expects three params, firstname, lastname and age
+//  print all the details in the given function
+
+function showUserInfo(firstname, lastname, age){
+    console.log(firstname, lastname, age);
+}
+
+console.log(showUserInfo("Stacy", "Jones", 23));
+
+//Q4. Create a function with name doaddition, pass three parameters and return the sum of all the three numbers
+// below output needs to be monitored - add(2,3,4), add(2), add(2.3,3), add("first", 2, "three")
+// analyse the outputs we get and try explaining the reasons behind!!
+
+//Well the first output is 9 because that is the sum of 2, 3, 4
+// The second and third output is NaN because there aren't enough arguments passed compared to the amount of parameters
+// The fourth one concatinates all arguments as if they are string because the first argument was a string
+
+function doaddition(num1, num2, num3){
+    return num1 + num2 + num3;
+}
+
+console.log(doaddition(2, 3, 4));
+console.log(doaddition(2));
+console.log(doaddition(2.3, 3));
+console.log(doaddition("first", 2, "three"));
+
+//Q5. Give me an example of your choice for each of the below concepts
+// a. closure, 
+// b. hoisting, 
+// c. constructor function
+
+//closure
+function bigOne(){
+    var bigVar = "I am the biggest variable"
+
+    function smallOne(){
+        console.log(bigVar)
+    }
+
+    return smallOne;
+}
+
+var biggest = bigOne();
+biggest();
+
+
+//hoisting
+
+var myVar = "This is mine"
+
+function mine(){
+
+    console.log("Hoisting: ",myVar)
+
+    myVar = "This is mine too"
+
+    console.log("New Hoisting: ",myVar)
+}
+
+mine();
+
+//Constructor function
+
+function Dog(name, age, breed){
+    this.name = name;
+    this.age = age;
+    this.breed = breed
+
+    this.getDogDetails = function(){
+        console.log("Dog name: ",name,"Dog age: " ,age, "Dog breed: " ,breed,)
+    }
+}
+
+var buddy = new Dog("buddy", 12, "pitbull")
+
+console.log(buddy.getDogDetails());
+
+
+
+//Q6. What is the purpose of call, apply and bind ? and why they are used ? whats the difference between bind and apply ?
+
+// The difference between apply and bind is that apply invokes the function immediately, where as bind returns a function that can be called at any time.
+// The difference between call and apply is that apply uses square brackets to hold the parameters for the function it is used after.
+// You use call and apply when you want to use a function immediately with a specific this and you would use bind if you wanted to save it
+
+//Q7. Create an example of bind using Student object, where a function returns data with SetTimeOut and we fix it by bind.
+
+var Student = {
+    name : "My name",
+    age : 40,
+    subject : "MERNStack",
+    getStudentDetails : function() {
+
+        console.log(`
+            ${this.name}
+            ${this.age}
+            ${this.subject}
+            `);
+    
+        
+    }
+};
+
+setTimeout(Student.getStudentDetails, 2000);
+
+setTimeout(Student.getStudentDetails.bind(Student), 2000);
+
+//Q8. Create an example of creating object with null prototype
+
+var nullObj = Object.create(null);
+
+console.log(Object.getPrototypeOf(nullObj));
+
+//Q9. How do we merge different objects properties using Object class function
+
+//You merge different object properties using the assign keyword
+
+//Q10. Create an object literal and export it to another file and import and show that there
+
+module.exports = {
+    Student
+}
