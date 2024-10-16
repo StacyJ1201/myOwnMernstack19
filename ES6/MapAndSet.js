@@ -43,17 +43,48 @@
 
 //before adding - sameUser we need to check for each time if its alreeady present or not
 
-let TraineeList = new Set(["Silvia", "Yao", "ben", "Duncan"])
-console.log(TraineeList.entries());
+// let TraineeList = new Set(["Silvia", "Yao", "ben", "Duncan"])
+// console.log(TraineeList.entries());
 
 
-TraineeList.add("Yao")
-console.log(TraineeList.entries());
+// TraineeList.add("Yao")
+// console.log(TraineeList.entries());
 
 
-TraineeList.add("Sierra")
-console.log(TraineeList.entries());
+// TraineeList.add("Sierra")
+// console.log(TraineeList.entries());
 
-TraineeList.add("Nilay")
+// TraineeList.add("Nilay")
 
-console.log(TraineeList.entries());
+// console.log(TraineeList.entries());
+
+//Create two examples of your own choice to make a strong map and a weak map
+// and a list of unique names of 10 states of your favorite country
+
+
+let students = new Map();
+
+students.set(1, "Ben");
+students.set(2, "Stacy");
+students.set(3, "Duncan");
+
+console.log(students.entries())
+
+let teacher1 = {name : "Dinesh"}
+let teacher2 = {name : "Mousumi"}
+let teacher3 = {name : "Ankit"}
+
+let teachers = new Map();
+teachers.set(teacher1, "Spring")
+teachers.set(teacher2, "Everything")
+teachers.set(teacher3, "Project")
+
+
+console.log(teachers.entries())
+
+
+let vacationStates = new Set(["Florida", "Alaska", "Hawaii", "North Carolina", "Colordao", "California", "Texas", "New York", "Boston", "Conneticut"]);
+
+vacationStates.forEach(state => {
+    console.log(state);
+});

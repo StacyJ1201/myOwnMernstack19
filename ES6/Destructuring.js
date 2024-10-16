@@ -83,20 +83,54 @@ let Student = {
         Language : 92
     }
 }
-
-//Questions for practice
-
 //print firstname, total marks and Individual Subject Marks, using object and nested destructuring
 //along with that also create a lastname and Ecology as (marks) "95", without making any change in Student
+const { FirstName, TotalMarks} = Student;
+const {Subject: {Physics, Chemistry, Language}} = Student;
+const { lastName = "Jones", Subject: {Ecology = 95}} = Student;
+console.log(lastName);
 
 //create an array of your aspirations, print first three to achieve in 2024,25,26 and keep others in ...rest operator, using array destructuring 
+let [aspiration2024, aspiration2025, aspiration2026, ...aspirations] = ["Become Programmer", "Make Money", "Buy House", "Start a family", "Do something else"]
 
 //create a funtion with name multiply which accepts three parameters, and return multiplication of all
 //but if we dont pass any parameter it returns 0
 
-//create an array of 1 - 5 and add arr[newval] = at 6th place, print the output using for of and for in loop
+var multiply = function(a=0, b=0, c=0){
+    return a * b * c
+}
 
+console.log("Multiply:",multiply(1,2))
+
+//create an array of 1 - 5 and add arr[newval] = at 6th place, print the output using for of and for in loop
+let numArr = [1, 2, 3, 4, 5]
+numArr.newval = 6
+for(let index in numArr){
+    console.log(numArr[index]);
+}
 //create an example of const where we can update on property of the object, where it says const is mutable
+const person = {
+    FirstName : "John",
+    lastName : "Doe"
+}
+
+person.FirstName = "Jane"
+
+console.log(person);
 
 //create a for loop using var and let, print each value in timeout after 2 second and try to 
 //demonstrate functional scope of var and lexical of let 
+
+var names = ["Mine", "Yours", "His", "Hers"]
+
+for(var i = 0; i < names.length; i++){
+    setTimeout(function() {
+        console.log("var:", i, names[i])
+    },2000);
+}
+
+for(let i = 0; i < names.length; i++){
+    setTimeout(function() {
+        console.log("let:", i, names[i])
+    },2000);
+}
