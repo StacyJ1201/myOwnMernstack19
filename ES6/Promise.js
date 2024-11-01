@@ -1,23 +1,30 @@
-//Promise - in javascript are the object which help us making the decision on the bases of reponse object we get
-//Promise
+//Promises - in javascript are the objects which help us making the decision on the basis of response object we get
+// Promise acts as a wrapper to the actual task that we want to do
+// This wrapper allows us to add statuses and make our process asynchronous
 
-//1. CallBack - way when we can't initiate all the calls in parallel
+//Example - Sign in process to the application :=> 
 
-// SignInUser(AuthenticationAPICallback, SignUpUsrCallBack, AuthorizationAPI, RedirectionAPI, RedirectToPage)
+//1. AuthenticationAPI(username, password) => {sign-in and return the token (AuthToken)} 
+//2. AuthorizationAPI(AuthToken) => {create the user session retun the userRole}
+//3. RedirectionAPI(AuthToken, userRole) => {the premiumum application services or normal services page}
+
+//1. CallBack - way <when we can't initiate all the calls in parallel>
+
+// SignInUser(AuthenticationAPICallbak, SignUpUsrCallBack, AuthorizationAPI, RedirectionAPI, RedirectToPage)
 // {
-//     let response = AuthenticationAPICallback(username, password)
-//     if(response == null){
+//     let response = AuthenticationAPICallbak(username, password) //call to server (async)
+//     if (response == null) {
 //         SignUpUsrCallBack(userObject)
 //     } else {
-//         let userRoleData = AuthorizationAPI(response.authToken);
-//         if(userRoleData == null){
-//             SignInUser(AuthenticationAPICallback, SignUpUsrCallBack, AuthorizationAPI, RedirectionAPI)
+//         let userRoleData = AuthorizationAPI(response.authToken); //call to server (async)
+//         if (userRoleData == null) {
+//             SignInUser(AuthenticationAPICallbak, SignUpUsrCallBack, AuthorizationAPI, RedirectionAPI)
 //         } else {
-//             let nextPage = RedirectionAPI(response.authToken, userRoleData.userRole);
-//             if(nextPage == null){
-//                 SignInUser(AuthenticationAPICallback, SignUpUsrCallBack, AuthorizationAPI, RedirectionAPI)
+//             let nextPage = RedirectionAPI(response.authToken, userRoleData.userRole); //call to server (async)
+//             if (nextPage == null) {
+//                 SignInUser(AuthenticationAPICallbak, SignUpUsrCallBack, AuthorizationAPI, RedirectionAPI)
 //             } else {
-//                 RedirectToPage(nextPage.pageLink)
+//                 RedirectToPage(nextPage.pageLink);
 //             }
 //         }
 //     }
@@ -25,85 +32,60 @@
 
 //call back hell - situation happens if any of the dependent output are not having the correct status in response
 
-//2. Promise Object - Resolve and reject are main callbacks of js-promise library and it allows us to add the statuses as well
+//2. Promise Object - Resolve and reject are main callbacks of js-promise lib and it allows us to add the statuses as well
 
-// let authPromise = new Promise((resolve, reject) => {
-    
+let authPromise = new Promise((resolve, reject)=>{
+
     // let authToken = AuthenticationAPI(username, password)
+    //     if (authToken != null) {
+    //         resolve({
+    //             tokencode : authToken.token,
+    //             status : authToken.succes,
+    //             msg : authToken.msg
+    //         })            
+    //     } else {           
+    //         reject({
+    //             tokencode : "token failure",
+    //             status : authToken.error,
+    //             msg : authToken.msg
+    //         })
+    //     }
 
-    // if(authToken != null){
-    //     resolve({
-    //         tokenCode : authToken.token,
-    //         status : authToken.success,
-    //         msg : authToken.msg
-    //     })
-    // } else {
-    //     reject({
+    // resolve({
+    //     authToken : "asdas545d3a54das54d3as",
+    //     status : "success immediately",
+    //     msg : "Athentication Successful at server"
+    // })
 
-    //         tokenCode : "token failure",
-    //         status : authToken.error,
-    //         msg : authToken.msg
-    //     })
-    // }
-
-//     setTimeout(() => {
-//         resolve({
-//             authToken : "refdhjwgh1819yhbfh",
-//             status : "success",
-//             msg : "Authentication Successful at server"
-//         })
-//     }, 2000);
-
-//     setTimeout(() => {
-//         reject({
-//             authToken : "token failure",
-//             status : "error",
-//             msg : "Authentication Failed at server - PROD2512"
-//         })
-//     }, 1990);
-// })
-
-// console.log(authPromise)
-
-// // once we get response we can decide to move to next call
-// authPromise.then((data, error) => {
-//     console.log(data); 
-//     console.log(error);
-// }) //result of successful promise - resolved
-// .catch((data, error) => {
-//     console.log(data);
-//     console.log(error);
-// }) //result of failed promise - rejected
-
-//Practice: studentInfo promise object that returns resolve and reject data after two seconds
-
-let studentInfo = new Promise((resolve, reject) => {
-
-    setTimeout(()=>{
+    setTimeout(() => {
         resolve({
-            studentId : 1,
-            studentName : "Stacy",
-            msg : "This is a student"
+            authToken : "asdas545d3a54das54d3as",
+            status : "success",
+            msg : "Athentication Successful at server"
         })
-    }, 2000)
+    }, 2000);
 
     setTimeout(() => {
         reject({
-            studentId : NaN,
-            studentName : "No Name",
-            msg : "This is not a student"
+            authToken : "token failure",
+            status : "error",
+            msg : "Athentication Failed at server - PROD2512"
         })
-    }, 1990)
+    }, 1990);
 })
 
-console.log(studentInfo)
+console.log(authPromise)
 
-studentInfo.then((data, error) =>{
-    console.log(data);
-    console.log(error);
-})
+//once we get response we can decide to move to next call
+authPromise.then((data, error)=>{//result of successful promise - resolved
+    console.log(data) 
+    console.log(error)
+}) 
+.catch((data, error)=>{ //result of failed promise - rejected
+    console.log(data)
+    console.log(error)
+}) 
 
-.catch((data, error) =>{
-    console.log(data);
-    console.log(error);
-})
+
+//Create a student promise object and it should return the resolve and reject data after two seconds
+//It should be named as student info
